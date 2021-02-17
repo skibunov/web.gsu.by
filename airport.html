@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+
+  <title>Hello, world!</title>
+</head>
+<body>
+
+  <nav class="nav nav-pills flex-column flex-sm-row p-3">
+    <a class="flex-sm-fill text-sm-center nav-link" href="pilot.html">Пилот</a>
+    <a class="flex-sm-fill text-sm-center nav-link" href="plane.html">Самолет</a>
+    <a class="flex-sm-fill text-sm-center nav-link active" href="airport.html">Аэропорт</a>
+  </nav>
+  <header class="jumbotron text-center" style="background-color: #f8f9fa;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-md-10 mx-auto">
+         <h1>Аэропорт</h1>
+         <p>Форма для заполнения аэропорта!</p>
+       </div>
+     </div>
+   </div>
+ </header>
+
+ <main class="main">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 mx-auto Larger shadow p-5 mb-5" style="border-radius: 15px;">
+        <form>
+          <div class="form-group">
+            <label>Название аэропорта:</label>
+            <input type="text" class="form-control" id="nameAir" name="name_Air">
+          </div>
+          <div class="form-group">
+            <label>Количество взлетных полос:</label>
+            <input type="number" class="form-control" size="0" id="countAir" name="count_Air" min="1" value="1">
+          </div>
+          <div class="form-group">
+            <label>Местоположение аэропорта :</label>
+            <select class="form-control" id="countryId" name="country_Air">
+              <option>США</option>
+              <option>ЕВРОПА</option>
+              <option>РОССИЯ</option>
+              <option>БЕЛАРУСЬ</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Дата основания аэропорта:</label>
+            <input type="date" class="form-control" name="date_Air">
+          </div>
+
+          <div class="form-group">
+            <label>Количество самолётов:</label>
+            <input type="number" class="form-control" size="0" id="countPlaneAir" name="count_plane_Air" min="1" value="1">
+          </div>
+          
+          <div class="form-group">
+            <label>Количество рейсов, осуществляемых данным аэропортом:</label>
+            <input type="number" class="form-control" size="0" id="countFlightAir" name="count_flight_Air" min="1" value="1">
+          </div>
+
+          <div class="form-group">
+            <label>Работоспособность аэропорта</label>
+            <select class="form-control">
+              <option>Работает</option>
+              <option>Закрыт на ремонт</option>
+              <option>Заброшен</option>
+            </select>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</main> 
+
+
+<script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

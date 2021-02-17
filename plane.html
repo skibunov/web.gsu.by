@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+
+  <title>Hello, world!</title>
+</head>
+<body>
+
+  <nav class="nav nav-pills flex-column flex-sm-row p-3">
+    <a class="flex-sm-fill text-sm-center nav-link" href="pilot.html">Пилот</a>
+    <a class="flex-sm-fill text-sm-center nav-link active" href="plane.html">Самолет</a>
+    <a class="flex-sm-fill text-sm-center nav-link" href="airport.html">Аэропорт</a>
+  </nav>
+  <header class="jumbotron text-center" style="background-color: #f8f9fa;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-md-10 mx-auto">
+         <h1>Самолет</h1>
+         <p>Форма для заполнения самолета!</p>
+       </div>
+     </div>
+   </div>
+ </header>
+
+ <main class="main">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 mx-auto Larger shadow p-5 mb-5" style="border-radius: 15px;">
+        <form>
+          <div class="form-group">
+            <label for="namePilot">Номер самолета:</label>
+            <input type="text" class="form-control" id="numberPlane" name="number_plane">
+          </div>
+          <div class="form-group">
+            <label for="secondNamePilot">Модель самолета:</label>
+            <input type="text" class="form-control" id="modelPlane" name="model_plane">
+          </div>
+          <div class="form-group">
+            <label for="secondNamePilot">Количество мест:</label>
+            <input type="number" class="form-control" size="0" id="countPlane" name="count_plane" min="1" value="1">
+          </div>
+          <div class="form-group">
+            <label>Проверка работоспособности:</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="control_Plane" value="true" id="controlPlane1" >
+              <label class="form-check-label" for="gridRadios1">
+                Прошел проверку
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="control_Plane" value="error" id="controlPlane2" >
+              <label class="form-check-label" for="gridRadios2">
+                Выявлены технические ошибки
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="countryId">Страна производства:</label>
+            <select class="form-control" id="countryId" name="country_Plane">
+              <option>США</option>
+              <option>ЕВРОПА</option>
+              <option>РОССИЯ</option>
+              <option>БЕЛАРУСЬ</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="secondNamePilot">Год выпуска:</label>
+            <input type="date" class="form-control" name="date_Plane">
+          </div>
+
+
+          <div class="form-group">
+            <label>Типы рейсов:</label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="int_flights_plane" value="international" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Междунородные рейсы
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="city_flights_plane" value="city" id="defaultCheck2">
+              <label class="form-check-label" for="defaultCheck2">
+                Межгородние рейсы
+              </label>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</main> 
+
+
+<script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
