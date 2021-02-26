@@ -12,25 +12,42 @@
 </head>
 <body>
 
-<nav class="nav nav-pills flex-column flex-sm-row p-3">
-  <a class="flex-sm-fill text-sm-center nav-link active" href="index.php">Пилот</a>
-  <a class="flex-sm-fill text-sm-center nav-link" href="plane.php">Самолет</a>
-  <a class="flex-sm-fill text-sm-center nav-link" href="airport.php">Аэропорт</a>
-</nav>
+  <nav class="nav nav-pills flex-column flex-sm-row p-3">
+    <a class="flex-sm-fill text-sm-center nav-link active" href="index.php">Пилот</a>
+    <a class="flex-sm-fill text-sm-center nav-link" href="plane.php">Самолет</a>
+    <a class="flex-sm-fill text-sm-center nav-link" href="airport.php">Аэропорт</a>
+  </nav>
   <header class="jumbotron text-center" style="background-color: #f8f9fa;">
     <div class="container">
       <div class="row">
         <div class="col-lg-10 col-md-10 mx-auto">
          <h1>Пилот</h1>
          <p>Форма для заполнения пилота!</p>
-       </div>
-     </div>
-   </div>
- </header>
+         <div class="btn-toolbar" role="toolbar" style="justify-content: center; display: flex;" >
+          <div class="btn-group mr-2" role="group">
+            <a type="submit" href="php/readPilotFile.php" class="btn btn-secondary">Просмотр содержимого файла</a>
+          </div>
+          <div class="btn-group mr-2" role="group">
+            <a type="submit" href="php/sortPilots.php" class="btn btn-secondary">Сортировка данных</a>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-secondary">Поиск данных</button>
+          </div>
+        </div>
 
- <main class="main">
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="main">
   <div class="container">
     <div class="row">
+
+      <div class="col-10 mx-auto">
+        <?php include_once 'php/addPilot.php'; ?>
+      </div>  
+
       <div class="col-6 mx-auto Larger shadow p-5 mb-5" style="border-radius: 15px;">
         <form>
           <div class="form-group">
@@ -72,14 +89,21 @@
             <input type="tel" placeholder="+375" class="form-control" name="telPilot" required pattern="^[ 0-9]+$">
           </div>
 
-          <button type="submit" name="submit" class="btn btn-primary btn-block">Добавить пилота</button>
+          
+          <div class="btn-group btn-block" role="group">
+            <button type="submit" value="Добавить пилота" name="submit" class="btn btn-primary">Добавить пилота</button>
+            <button type="submit" formaction="php/addPilotFile.php" value="Запись в файл" name="writeFile" class="btn btn-secondary">Запись в файл</button>
+          </div>
+
+
+
         </form>
       </div>
-
-      <?php include_once 'php/addPilot.php'; ?>
-
     </div>
+
+
   </div>
+</div>
 </main> 
 
 

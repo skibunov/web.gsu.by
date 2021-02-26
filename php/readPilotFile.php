@@ -1,37 +1,25 @@
 <?php 
 
-	if(isset($_GET['namePilot']))
-		$namePilot = $_GET['namePilot'];
+	$file = fopen("../pilotsList.txt", "rt") or die("Невозможно открыть файл");
+?>
+<!doctype html>
+<html lang="ru">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	if(isset($_GET['surnamePilot']))
-		$surnamePilot = $_GET['surnamePilot'];
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../vendor/bootstrap/dist/css/bootstrap.min.css">
 
-	if(isset($_GET['middleNamePilot']) && $_GET['middleNamePilot'] != '')
-		$middleNamePilot = $_GET['middleNamePilot'];
-	else
-		$middleNamePilot = "Не указано";
-
-	if(isset($_GET['positionPilot']))
-		$positionPilot = $_GET['positionPilot'];
-
-	if(isset($_GET['birthdayPilot']))
-		$birthdayPilot = $_GET['birthdayPilot'];
-
-	if(isset($_GET['adressPilot']) && $_GET['adressPilot'] != '')
-		$adressPilot = $_GET['adressPilot'];
-	else
-		$adressPilot = "Не указано";
-
-	if(isset($_GET['telPilot']))
-		$telPilot = $_GET['telPilot'];
-
- ?>
-
-<?php if (isset($_GET['submit'])) { ?>
+  <title>Hello, world!</title>
+</head>
+<body>
+	<div class="col-10 mx-auto">
 	<h1 class="text-center">Таблица Пилотов</h1>
 	<table class="table table-bordered">
 	  <thead>
-	    <tr>
+	    <tr>	
 	      <th scope="col">Имя</th>
 	      <th scope="col">Фамилия</th>
 	      <th scope="col">Отчество</th>
@@ -42,7 +30,12 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-	    <tr>
+	  	<?php 
+	  	for($i = 0; $str = fgets($file); $i++){  
+			$array = explode("|",$str);
+			list($namePilot,$surnamePilot,$middleNamePilot,$positionPilot,$birthdayPilot,$adressPilot,$telPilot) = $array;
+	  	?>	
+	    <tr>	
 	      <td><?php echo $namePilot; ?></ts>
 	      <td><?php echo $surnamePilot; ?></td>
 	      <td><?php echo $middleNamePilot; ?></td>
@@ -51,6 +44,15 @@
 	      <td><?php echo $adressPilot; ?></td>
 	      <td><?php echo $telPilot; ?></td>
 	    </tr>
+		<?php } ?>
 	  </tbody>
 	</table>
-<?php } ?>
+	</div>
+
+
+</body>
+</html>
+
+<?php
+	fclose($file);
+ ?>
