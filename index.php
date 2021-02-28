@@ -25,13 +25,13 @@
          <p>Форма для заполнения пилота!</p>
          <div class="btn-toolbar" role="toolbar" style="justify-content: center; display: flex;" >
           <div class="btn-group mr-2" role="group">
-            <a type="submit" href="php/readPilotFile.php" class="btn btn-secondary">Просмотр содержимого файла</a>
+            <a type="submit" href="php/readPilotsFile.php" class="btn btn-secondary">Просмотр содержимого файла</a>
           </div>
           <div class="btn-group mr-2" role="group">
-            <a type="submit" href="php/sortPilots.php" class="btn btn-secondary">Сортировка данных</a>
+            <a type="submit" href="php/sortPilotsFile.php" class="btn btn-secondary">Сортировка данных</a>
           </div>
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-secondary">Поиск данных</button>
+            <a type="submit" href="php/searchPilotsFile.php" class="btn btn-secondary">Поиск данных</a>
           </div>
         </div>
 
@@ -95,7 +95,7 @@
             <button type="submit" formaction="php/addPilotFile.php" value="Запись в файл" name="writeFile" class="btn btn-secondary">Запись в файл</button>
           </div>
 
-
+          
 
         </form>
       </div>

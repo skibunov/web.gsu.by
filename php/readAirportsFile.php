@@ -1,19 +1,30 @@
 <?php 
 
-	if(isset($_GET['Air']))
-		$Air = $_GET['Air'];
+	$file = fopen("../airportList.txt", "rt") or die("Невозможно открыть файл");
 
-
-	if(!empty($Air["'season'"]))
-		$season = implode('<br>',$Air["'season'"]);
-	else
-		$season = "Не указано"
-
+	$table = "";
+	for($i = 0; $str = fgets($file); $i++){  
+		$array = unserialize($str);
+		if (!empty($array)) {
+			$table .= "<tr>";
+			$table .= "<td>".$array["'nameAir'"]."</td>";
+			$table .= "<td>".$array["'countAir'"]."</td>";
+			$table .= "<td>".$array["'countryAir'"]."</td>";
+			$table .= "<td>".$array["'dateAir'"]."</td>";
+			$table .= "<td>".$array["'countPlaneAir'"]."</td>";
+			$table .= "<td>".$array["'countFlightAir'"]."</td>";
+			$table .= "<td>";
+			foreach ($array["'season'"] as $value) {
+				$table.= $value."<br>";
+			}
+			$table .= "</td>";
+			$table .= "</tr>";
+		}
+	}
 
  ?>
 
-
- <!doctype html>
+<!doctype html>
 <html lang="ru">
 <head>
   <!-- Required meta tags -->
@@ -41,15 +52,7 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-	    <tr>
-	      <td><?php echo $Air["'nameAir'"]; ?></ts>
-	      <td><?php echo $Air["'countAir'"]; ?></td>
-	      <td><?php echo $Air["'countryAir'"]; ?></td>
-	      <td><?php echo $Air["'dateAir'"]; ?></td>
-	      <td><?php echo $Air["'countPlaneAir'"]; ?></td>
-	      <td><?php echo $Air["'countFlightAir'"]; ?></td>
-	      <td><?php echo $season; ?></td>
-	    </tr>
+	    <?php echo $table; ?>
 	  </tbody>
 	</table>
 	</div>

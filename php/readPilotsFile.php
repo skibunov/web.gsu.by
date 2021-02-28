@@ -1,6 +1,26 @@
 <?php 
 
 	$file = fopen("../pilotsList.txt", "rt") or die("Невозможно открыть файл");
+
+	$table = "";
+	for($i = 0; $str = fgets($file); $i++){  
+		$array = explode("|",$str);
+		if (!empty($array)){
+			list($namePilot,$surnamePilot,$middleNamePilot,$positionPilot,$birthdayPilot,$adressPilot,$telPilot) = $array;
+		 	$table .= "<tr>";
+			$table .= "<td>".$namePilot."</td>";
+			$table .= "<td>".$surnamePilot."</td>";
+			$table .= "<td>".$middleNamePilot."</td>";
+			$table .= "<td>".$positionPilot."</td>";
+			$table .= "<td>".$birthdayPilot."</td>";
+			$table .= "<td>".$adressPilot."</td>";
+			$table .= "<td>".$telPilot."</td>";
+			$table .= "</tr>";
+		}
+	 }	
+
+	fclose($file); 
+
 ?>
 <!doctype html>
 <html lang="ru">
@@ -30,21 +50,7 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-	  	<?php 
-	  	for($i = 0; $str = fgets($file); $i++){  
-			$array = explode("|",$str);
-			list($namePilot,$surnamePilot,$middleNamePilot,$positionPilot,$birthdayPilot,$adressPilot,$telPilot) = $array;
-	  	?>	
-	    <tr>	
-	      <td><?php echo $namePilot; ?></ts>
-	      <td><?php echo $surnamePilot; ?></td>
-	      <td><?php echo $middleNamePilot; ?></td>
-	      <td><?php echo $positionPilot; ?></td>
-	      <td><?php echo $birthdayPilot; ?></td>
-	      <td><?php echo $adressPilot; ?></td>
-	      <td><?php echo $telPilot; ?></td>
-	    </tr>
-		<?php } ?>
+	  	<?php echo $table; ?>
 	  </tbody>
 	</table>
 	</div>
@@ -52,7 +58,3 @@
 
 </body>
 </html>
-
-<?php
-	fclose($file);
- ?>

@@ -25,15 +25,17 @@
 	if(isset($_GET['telPilot']))
 		$telPilot = $_GET['telPilot'];
 
- ?>
 
-
-<?php if (isset($_GET['writeFile'])) {
 	$file = fopen("../pilotsList.txt", "at") or die("Невозможно открыть файл");
+	flock($file,LOCK_EX); 
 
 	$temp = $namePilot."|".$surnamePilot."|".$middleNamePilot."|".$positionPilot."|".$birthdayPilot."|".$adressPilot."|".$telPilot."\n";
 
 	fputs($file,$temp);
+	
+	fflush($file); 
+	flock($file,LOCK_UN);
+
 	fclose($file);
 ?>
 
@@ -60,5 +62,3 @@
 	</div>
 </body>
 </html>
-
-<?php } ?>

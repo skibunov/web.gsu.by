@@ -1,19 +1,31 @@
 <?php 
 
-	if(isset($_GET['Air']))
-		$Air = $_GET['Air'];
+	$file = file("../airportList.txt") or die("Невозможно открыть файл");
+	asort($file);
 
-
-	if(!empty($Air["'season'"]))
-		$season = implode('<br>',$Air["'season'"]);
-	else
-		$season = "Не указано"
-
+	$table = "";
+	foreach ($file as $str){  
+		$array = unserialize($str);
+		if (!empty($array)) {
+			$table .= "<tr>";
+			$table .= "<td>".$array["'nameAir'"]."</td>";
+			$table .= "<td>".$array["'countAir'"]."</td>";
+			$table .= "<td>".$array["'countryAir'"]."</td>";
+			$table .= "<td>".$array["'dateAir'"]."</td>";
+			$table .= "<td>".$array["'countPlaneAir'"]."</td>";
+			$table .= "<td>".$array["'countFlightAir'"]."</td>";
+			$table .= "<td>";
+			foreach ($array["'season'"] as $value) {
+				$table.= $value."<br>";
+			}
+			$table .= "</td>";
+			$table .= "</tr>";
+		}
+	}
 
  ?>
 
-
- <!doctype html>
+<!doctype html>
 <html lang="ru">
 <head>
   <!-- Required meta tags -->
@@ -27,7 +39,7 @@
 </head>
 <body>
 	<div class="col-10 mx-auto">
-	<h1 class="text-center">Таблица Аэропортов</h1>
+	<h1 class="text-center">Сортированная таблица аэропортов</h1>
 	<table class="table table-bordered">
 	  <thead>
 	    <tr>
@@ -41,15 +53,7 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-	    <tr>
-	      <td><?php echo $Air["'nameAir'"]; ?></ts>
-	      <td><?php echo $Air["'countAir'"]; ?></td>
-	      <td><?php echo $Air["'countryAir'"]; ?></td>
-	      <td><?php echo $Air["'dateAir'"]; ?></td>
-	      <td><?php echo $Air["'countPlaneAir'"]; ?></td>
-	      <td><?php echo $Air["'countFlightAir'"]; ?></td>
-	      <td><?php echo $season; ?></td>
-	    </tr>
+	    <?php echo $table; ?>
 	  </tbody>
 	</table>
 	</div>

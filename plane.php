@@ -23,6 +23,17 @@
         <div class="col-lg-10 col-md-10 mx-auto">
          <h1>Самолет</h1>
          <p>Форма для заполнения самолета!</p>
+          <div class="btn-toolbar" role="toolbar" style="justify-content: center; display: flex;" >
+          <div class="btn-group mr-2" role="group">
+            <a type="submit" href="php/readPlanesFile.php" class="btn btn-secondary">Просмотр содержимого файла</a>
+          </div>
+          <div class="btn-group mr-2" role="group">
+            <a type="submit" href="php/sortPlanesFile.php" class="btn btn-secondary">Сортировка данных</a>
+          </div>
+          <div class="btn-group" role="group">
+            <a type="submit" href="php/searchPlanesFile.php" class="btn btn-secondary">Поиск данных</a>
+          </div>
+        </div>
        </div>
      </div>
    </div>
@@ -39,7 +50,7 @@
           </div>
           <div class="form-group">
             <label>Модель самолета: <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" name="modelPlane" required pattern="^[ 0-9]+$">
+            <input type="text" class="form-control" name="modelPlane" required>
           </div>
           <div class="form-group">
             <label>Количество мест: <span class="text-danger">*</span></label>
@@ -84,7 +95,12 @@
             </select>
           </div>
 
-          <button type="submit" class="btn btn-primary btn-block">Добавить пилота</button>
+          <div class="btn-group btn-block" role="group">
+            <button type="submit" class="btn btn-primary">Добавить самолет</button>
+            <button type="submit" formaction="php/addPlaneFile.php" value="Запись в файл" name="writeFile" class="btn btn-secondary">Запись в файл</button>
+          </div>
+
+
       </form>
     </div>
   </div>
