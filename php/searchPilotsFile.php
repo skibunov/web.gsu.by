@@ -2,15 +2,32 @@
 
 	$file = fopen("../pilotsList.txt", "rt") or die("Невозможно открыть файл");
 
-	// $prompt_msg = "Please type search name.";
-	// $name = prompt($prompt_msg);
+	if (isset($_GET['nameSearch']))
+		$nameSearch = $_GET['nameSearch'];
+
+	if (isset($_GET['fieldSearch']))
+		$fieldSearch = $_GET['fieldSearch'];
+
+	for ($i = 0; $str = fgets($file); $i++) { 
+		$array[] = explode("|",$str);
+	}
+
+	$search = "";
+	if (isset($_GET['search'])) {
+		for ($i = 0; $i < count($array); $i++) { 
+			if ($array[$i][$fieldSearch] == $nameSearch || strpos($array[$i][$fieldSearch], $nameSearch) || is_int(strpos($array[$i][$fieldSearch], $nameSearch))) {
+				$search[] = $array[$i];
+			}
+		}
+	} else {
+		$search = $array;
+	}
+
 
 	$table = "";
-	for($i = 0; $str = fgets($file); $i++){  
-		if (is_int(strpos($str,"a"))) {
-			$array = explode("|",$str);
-			if (!empty($array)){
-				list($namePilot,$surnamePilot,$middleNamePilot,$positionPilot,$birthdayPilot,$adressPilot,$telPilot) = $array;
+	for($i = 0; $i < count($search); $i++){  
+			if (!empty($search[$i])){
+				list($namePilot,$surnamePilot,$middleNamePilot,$positionPilot,$birthdayPilot,$adressPilot,$telPilot) = $search[$i];
 			 	$table .= "<tr>";
 				$table .= "<td>".$namePilot."</td>";
 				$table .= "<td>".$surnamePilot."</td>";
@@ -20,23 +37,13 @@
 				$table .= "<td>".$adressPilot."</td>";
 				$table .= "<td>".$telPilot."</td>";
 				$table .= "</tr>";
-			}
 		}
 	}
+	
 
  ?>
 
-<?php 
-    function prompt($prompt_msg){
-        echo("<script type='text/javascript'> var answer = prompt('".$prompt_msg."'); </script>");
-
-        $answer = "<script type='text/javascript'> document.write(answer); </script>";
-        return($answer);
-    }
-
- ?>
-
-  <!doctype html>
+<!doctype html>
 <html lang="ru">
 <head>
   <!-- Required meta tags -->
@@ -51,6 +58,27 @@
 <body>
 	<div class="col-10 mx-auto">
 	<h1 class="text-center">Поиск по таблице пилотов</h1>
+	<div class="col-6 mx-auto mb-2">
+		<form>
+			<div class="form-group">
+	    		<input type="text" class="form-control" placeholder="Поиск" name="nameSearch" required>
+	  		</div>
+	  		<div class="form-group mb-2">
+				<select class="form-control" name="fieldSearch" required>
+					<option value="0">Имя</option>
+					<option value="1">Фамилия</option>
+					<option value="2">Отчество</option>
+					<option value="3">Должность</option>
+					<option value="4">Дата рождения</option>
+					<option value="5">Адрес</option>
+					<option value="6">Мобильный телефон</option>
+				</select>
+			</div>
+			<button type="submit" name="search" class="btn btn-primary btn-block">Поиск</button>
+		</form>
+
+	</div>
+
 	<table class="table table-bordered">
 	  <thead>
 	    <tr>	

@@ -2,43 +2,50 @@
 
 	$str  = file("../planesList.txt");
 
-	// $prompt_msg = "Please type search name.";
-	// $name = prompt($prompt_msg);
+	if (isset($_GET['nameSearch']))
+		$nameSearch = $_GET['nameSearch'];
+
+	if (isset($_GET['fieldSearch']))
+		$fieldSearch = $_GET['fieldSearch'];
+
+	foreach ($str as $v){
+		$array[] = explode("|",$v);
+	}
+
+	$search = "";
+	if (isset($_GET['search'])) {
+		for ($i = 0; $i < count($array); $i++) { 
+			if ($array[$i][$fieldSearch] == $nameSearch || strpos($array[$i][$fieldSearch], $nameSearch) || is_int(strpos($array[$i][$fieldSearch], $nameSearch))) {
+				$search[] = $array[$i];
+			}
+		}
+	} else {
+		$search = $array;
+	}
+
 
 
 	$table = "";
-	foreach ($str as $v) {
-		if (is_int(strpos($v,"a"))) {
-			$array = explode("|",$v);
-			if (!empty($array)){
-				list($numberPlane,$modelPlane,$countPlane,$controlPlane,$countryPlane,$datePlane,$flightsPlane) = $array;
-				$flightsPlane = str_replace(",","<br>", $flightsPlane);
-				$table .= "<tr>";
-				$table .= "<td>".$numberPlane."</td>";
-				$table .= "<td>".$modelPlane."</td>";
-				$table .= "<td>".$countPlane."</td>";
-				$table .= "<td>".$controlPlane."</td>";
-				$table .= "<td>".$countryPlane."</td>";
-				$table .= "<td>".$datePlane."</td>";
-				$table .= "<td>".$flightsPlane."</td>";
-				$table .= "</tr>";
-			}
+	for($i = 0; $i < count($search); $i++){ 
+		if (!empty($search[$i])){
+			list($numberPlane,$modelPlane,$countPlane,$controlPlane,$countryPlane,$datePlane,$flightsPlane) = $search[$i];
+			$flightsPlane = str_replace(",","<br>", $flightsPlane);
+			$table .= "<tr>";
+			$table .= "<td>".$numberPlane."</td>";
+			$table .= "<td>".$modelPlane."</td>";
+			$table .= "<td>".$countPlane."</td>";
+			$table .= "<td>".$controlPlane."</td>";
+			$table .= "<td>".$countryPlane."</td>";
+			$table .= "<td>".$datePlane."</td>";
+			$table .= "<td>".$flightsPlane."</td>";
+			$table .= "</tr>";
 		}
 	}
 
  ?>
 
-<?php 
-    function prompt($prompt_msg){
-        echo("<script type='text/javascript'> var answer = prompt('".$prompt_msg."'); </script>");
 
-        $answer = "<script type='text/javascript'> document.write(answer); </script>";
-        return($answer);
-    }
-
- ?>
-
-  <!doctype html>
+<!doctype html>
 <html lang="ru">
 <head>
   <!-- Required meta tags -->
@@ -53,13 +60,33 @@
 <body>
 	<div class="col-10 mx-auto">
 	<h1 class="text-center">Поиск по таблице самолетов</h1>
+	<div class="col-6 mx-auto mb-2">
+		<form>
+			<div class="form-group">
+	    		<input type="text" class="form-control" placeholder="Поиск" name="nameSearch" required>
+	  		</div>
+	  		<div class="form-group mb-2">
+				<select class="form-control" name="fieldSearch" required>
+					<option value="0">Номер</option>
+					<option value="1">Модель</option>
+					<option value="2">Количество мест</option>
+					<option value="3">Работоспособности</option>
+					<option value="4">Страна производства</option>
+					<option value="5">Год выпуска</option>
+					<option value="6">Типы рейсов</option>
+				</select>
+			</div>
+			<button type="submit" name="search" class="btn btn-primary btn-block">Поиск</button>
+		</form>
+
+	</div>
 	<table class="table table-bordered">
 	  <thead>
 	   	<tr>
 	      <th scope="col">Номер</th>
 	      <th scope="col">Модель </th>
-	      <th scope="col">Количество мест </th>
-	      <th scope="col">Работоспособности </th>
+	      <th scope="col">Количество мест</th>
+	      <th scope="col">Работоспособности</th>
 	      <th scope="col">Страна производства</th>
 	      <th scope="col">Год выпуска</th>
 	      <th scope="col">Типы рейсов</th>
