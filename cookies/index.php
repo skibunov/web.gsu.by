@@ -1,4 +1,4 @@
-<?php include 'cookies.php'; ?>
+<?php include_once 'cookies.php'; ?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -25,7 +25,7 @@
          <h1>Cookies</h1>
          <div class="badge badge-primary">
           <h6>Вы посетили наш сайт <?php echo $num; ?> раз!</h6>
-          <h6>Дата последнего посещения <?php echo $data_res; ?> минут</h6>
+          <h6>Дата последнего посещения <?php echo $correctdate; ?> минут</h6>
         </div>
       </div>
     </div>
@@ -34,20 +34,27 @@
 
 <main class="main">
   <div class="container">
+    <?php if (!isset($_COOKIE['banner'])) { ?>
     <div class="row">
        <div class="col-6 mx-auto Larger shadow p-5 mb-5 banner" style="border-radius: 15px;">
-        <form>
+        <form method="post">
           <button type="submit" name="banner" class="btn btn-primary">Убрать баннер</button>
         </form>
        </div>
     </div>
+    <?php  } ?>
 
     <div class="row">
       <div class="col-6 mx-auto Larger shadow p-5 mb-5" style="border-radius: 15px;">
         <?php if (isset($_COOKIE['birthday'])) {
-          echo "<p>До даты Рождения - ".$_COOKIE['birthday']." </p>";
+          if ($tmp->days == 0) {
+            echo "У вас сегодня день Рождения!"; 
+          }else{
+            echo "<p>До даты Рождения - ".$tmp->days." </p>";
+          }
+          
         } ?>
-        <form>
+        <form method="post">
           <div class="form-group">
             <label>Введите дату рождения: <span class="text-danger">*</span></label>
             <input type="date" class="form-control" name="birthday" required>
@@ -59,7 +66,7 @@
 
     <div class="row">
       <div class="col-6 mx-auto Larger shadow p-5 mb-5" style="border-radius: 15px;">
-        <form>
+        <form method="post">
           <div class="form-group">
             <label>Дизайн сайта: <span class="text-danger">*</span></label>
             <select class="form-control" name="them" required>
@@ -70,8 +77,85 @@
           <button type="submit" value="Установить" name="submit2" class="btn btn-primary">Установить</button>
         </form>
       </div>
-
     </div>
+
+
+
+      <form method="post" action="basket.php">
+      <div class="row">
+      <div class="col-3">
+        <div class="card">
+          <img src="" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Card title [1]</h5>
+            <p class="card-text"><input  type="text" name="summ" value="100" disabled></p>
+            <button type="submit" class="btn btn-primary" value="1" name="kyp">Купить</button>
+          </div>
+        </div>      
+      </div>
+      <div class="col-3">
+        <div class="card">
+          <img src="" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Card title [2]</h5>
+            <p class="card-text"><input  type="text" name="summ" value="200" disabled></p>
+            <button type="submit" class="btn btn-primary" value="2" name="kyp">Купить</button>
+          </div>
+        </div>      
+      </div>
+      <div class="col-3">
+        <div class="card">
+          <img src="" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Card title [3]</h5>
+            <p class="card-text"><input  type="text" name="summ" value="300" disabled></p>
+            <button type="submit" class="btn btn-primary" value="3" name="kyp">Купить</button>
+          </div>
+        </div>      
+      </div>
+      <div class="col-3">
+        <div class="card">
+          <img src="" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Card title [4]</h5>
+            <p class="card-text"><input  type="text" name="summ" value="400" disabled></p>
+            <button type="submit" class="btn btn-primary" value="4" name="kyp">Купить</button>
+          </div>
+        </div>      
+      </div>
+      <div class="col-3">
+        <div class="card">
+          <img src="" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Card title [5]</h5>
+            <p class="card-text"><input  type="text" name="summ" value="500" disabled></p>
+            <button type="submit" class="btn btn-primary" value="5" name="kyp">Купить</button>
+          </div>
+        </div>      
+      </div>
+      <div class="col-3">
+        <div class="card">
+          <img src="" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Card title [6]</h5>
+            <p class="card-text"><input  type="text" name="summ" value="600" disabled></p>
+            <button type="submit" class="btn btn-primary" value="6" name="kyp">Купить</button>
+          </div>
+        </div>      
+      </div>
+      <div class="col-3">
+        <div class="card">
+          <img src="" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Card title [7]</h5>
+            <p class="card-text"><input  type="text" name="summ" value="700" disabled></p>
+            <button type="submit" class="btn btn-primary" value="7" name="kyp">Купить</button>
+          </div>
+        </div>      
+      </div>
+      <div>
+    </form>
+
   </div>
 </div>
 </main> 
@@ -86,10 +170,5 @@
  </script>
 <?php endif ?>
 
-<?php if (isset($_COOKIE['banner'])): ?>
-  <script>
-    $(".banner").hide();
-  </script>
-<?php endif ?>
 </body>
 </html>

@@ -4,43 +4,42 @@
 	$num++;
 	setcookie("counter",$num,time()+3600*24);
 
-	date_default_timezone_set('UTC');
-	$date = date("i");
-	if (!isset($_COOKIE['date'])) {
-		setcookie("date",$date,time()+3600*24);
-		$data_res = 0;
-	} else {
-		$date_c = $_COOKIE['date'];
-		$date_n = date("i");
-		$data_res = $date_n - $date_c;
-		setcookie("date",$date_n,time()+3600*24);  
+
+	date_default_timezone_set('UTC'); 
+	if (isset($_COOKIE['date'])) {
+		$correctdate = date('i') -  $_COOKIE['date'];
+	}else{
+		$correctdate = 0;
+	}
+	$date =  date('i');
+	setcookie("date",$date,time()+3600*24);
+
+	if (isset($_POST['banner'])) {
+		setcookie("banner",true,time()+ (60*2));
+		header("Refresh:0");	
 	}
 
-	if (isset($_GET['submit1'])) {
-		$check_time = strtotime($_GET['birthday']) - time();
-		$months = floor($check_time/86400/12);
-		$days = floor($check_time/86400);
-		$hours = floor(($check_time%86400)/3600);
-		$minutes = floor(($check_time%3600)/60);
-		if ($days <= 0) {
-			setcookie("birthday","У вас сегодня день Рождения",time()+3600*24);
-		}else{
-			setcookie("birthday",$days,time()+3600*24);
-		} 
+	if (isset($_POST['submit1'])) {
+		setcookie("birthday",$_POST['birthday'],time()+3600*24);
+		header("Refresh:0");
 	}
 
-	if (isset($_GET['submit2'])) {
-		if ($_GET['them'] == "blue") {
-			setcookie("them","blue",time()+3600*24);
-		}else{
-			setcookie("them","grey",time()+3600*24);
-		}
+	if (isset($_COOKIE['birthday'])) {
+		$cd = new \DateTime('today'); // Сегодня, время 00:00:00
+	    $bd = new \DateTime($_COOKIE['birthday']); // Объект Дата дня рождения
+	    $bd->setDate($cd->format('Y'), $bd->format('m'), $bd->format('d')); // Устанавливаем текущий год, оставляем месяц и день
+	    $tmp = $cd->diff($bd); // Разница дат
+	    if($tmp->invert){ // Если в этом году уже был (разница "отрицательная")
+	        $bd->modify('+1 year'); // Добавляем год
+	        $tmp = $cd->diff($bd); // Снова вычисляем разницу
+    	}
 	}
 
 
-	if (isset($_GET['banner'])) {
-		setcookie("banner",1,time()+120000);
+
+	if (isset($_POST['submit2'])) {
+		setcookie("them",$_POST['them'],time()+3600*24);
+		header("Refresh:0");
 	}
 
-	
  ?>
