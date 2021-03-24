@@ -1,3 +1,45 @@
+<?php 
+  session_start();
+
+if (empty($_SESSION['numberPlane']))
+  $_SESSION['numberPlane'] = "";
+
+if (empty($_SESSION['modelPlane']))
+  $_SESSION['modelPlane'] = "";
+
+if (empty($_SESSION['countPlane']))
+  $_SESSION['countPlane'] = "";
+
+if (empty($_SESSION['controlPlane']))
+  $_SESSION['controlPlane'] = "";
+
+if (empty($_SESSION['countryPlane']))
+  $_SESSION['countryPlane'] = "";
+
+if (empty($_SESSION['datePlane']))
+  $_SESSION['datePlane'] = "";
+
+if (empty($_SESSION['flightsPlane']))
+  $_SESSION['flightsPlane'] = "";
+
+  if (isset($_GET['next'])) {
+    $_SESSION['numberPlane'] = $_GET['numberPlane'];
+    $_SESSION['modelPlane'] = $_GET['modelPlane'];
+    $_SESSION['countPlane'] = $_GET['countPlane'];
+    $_SESSION['controlPlane'] = $_GET['controlPlane'];
+    $_SESSION['countryPlane'] = $_GET['countryPlane'];
+    $_SESSION['datePlane'] = $_GET['datePlane'];
+    $_SESSION['flightsPlane'] = $_GET['flightsPlane'];
+
+    header("Location: airport.php");
+  }
+
+  if (isset($_GET['preview'])) {
+    header("Location: index.php");
+  }
+
+ ?>
+
 <!doctype html>
 <html lang="ru">
 <head>
@@ -43,29 +85,29 @@
   <div class="container">
     <div class="row">
       <div class="col-6 mx-auto Larger shadow p-5 mb-5" style="border-radius: 15px;">
-        <form action="php/addPlane.php">
+        <form>
           <div class="form-group">
             <label>Номер самолета: <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" name="numberPlane" autofocus required>
+            <input type="text" class="form-control" value="<?php echo($_SESSION['numberPlane']); ?>" name="numberPlane" autofocus required>
           </div>
           <div class="form-group">
             <label>Модель самолета: <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" name="modelPlane" required>
+            <input type="text" class="form-control" value="<?php echo($_SESSION['modelPlane']); ?>" name="modelPlane" required>
           </div>
           <div class="form-group">
             <label>Количество мест: <span class="text-danger">*</span></label>
-            <input type="number" class="form-control" size="0" name="countPlane" min="1" value="1" required>
+            <input type="number" class="form-control" value="<?php echo($_SESSION['countPlane']); ?>" size="0" name="countPlane" min="1" value="1" required>
           </div>
           <div class="form-group">
             <label>Проверка работоспособности: <span class="text-danger">*</span></label>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="controlPlane" value="Прошел проверку" id="truePlane" required>
+              <input class="form-check-input" <?php echo $_SESSION['controlPlane'] == "Прошел проверку" ? 'checked="checked"' : ''?> type="radio" name="controlPlane" value="Прошел проверку" id="truePlane" required>
               <label class="form-check-label" for="truePlane">
                 Прошел проверку
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="controlPlane" value="Выявлены технические ошибки" id="falsePlane" required>
+              <input class="form-check-input" <?php echo $_SESSION['controlPlane'] == "Выявлены технические ошибки" ? 'checked="checked"' : ''?> type="radio" name="controlPlane" value="Выявлены технические ошибки" id="falsePlane" required>
               <label class="form-check-label" for="falsePlane">
                 Выявлены технические ошибки
               </label>
@@ -75,29 +117,38 @@
           <div class="form-group">
             <label>Страна производства: <span class="text-danger">*</span></label>
             <select class="form-control" name="countryPlane" required>
-              <option value="США">США</option>
-              <option value="ЕВПРОПА">ЕВРОПА</option>
-              <option value="РОССИЯ">РОССИЯ</option>
-              <option value="БЕЛАРУСЬ">БЕЛАРУСЬ</option>
+              <option value="США" <?php echo $_SESSION['countryPlane'] == "США" ? 'selected="selected"' : ''?>>США</option>
+              <option value="ЕВРОПА" <?php echo $_SESSION['countryPlane'] == "ЕВРОПА" ? 'selected="selected"' : ''?>>ЕВРОПА</option>
+              <option value="РОССИЯ" <?php echo $_SESSION['countryPlane'] == "РОССИЯ" ? 'selected="selected"' : ''?>>РОССИЯ</option>
+              <option value="БЕЛАРУСЬ" <?php echo $_SESSION['countryPlane'] == "БЕЛАРУСЬ" ? 'selected="selected"' : ''?>>БЕЛАРУСЬ</option>
             </select>
           </div>
 
           <div class="form-group">
             <label>Год выпуска: <span class="text-danger">*</span></label>
-            <input type="date" class="form-control" name="datePlane" required>
+            <input type="date" class="form-control" value="<?php echo($_SESSION['datePlane']); ?>" name="datePlane" required>
           </div>
 
           <div class="form-group">
             <label>Типы рейсов: <span class="text-danger">*</span></label>
             <select multiple class="form-control" name="flightsPlane[]" required>
-              <option value="Междунородные рейсы">Междунородные рейсы</option>
-              <option value="Межгородние рейсы">Межгородние рейсы</option>
+              <option <?php foreach ($_SESSION['flightsPlane'] as $value) {
+                echo $value== "Междунородные рейсы" ? 'selected="selected"' : '';
+              } ?> value="Междунородные рейсы">Междунородные рейсы</option>
+              <option <?php foreach ($_SESSION['flightsPlane'] as $value) {
+                echo $value== "Межгородние рейсы" ? 'selected="selected"' : '';
+              } ?> value="Межгородние рейсы">Межгородние рейсы</option>
             </select>
           </div>
 
           <div class="btn-group btn-block" role="group">
-            <button type="submit" class="btn btn-primary">Добавить самолет</button>
+            <button type="submit" formaction="php/addPlane.php" class="btn btn-primary">Добавить самолет</button>
             <button type="submit" formaction="php/addPlaneFile.php" value="Запись в файл" name="writeFile" class="btn btn-secondary">Запись в файл</button>
+          </div>
+
+          <div class="btn-group btn-block" role="group">
+            <button type="submit" class="btn btn-primary" name="preview" value="Preview">Preview</button>
+            <button type="submit" class="btn btn-secondary" name="next" value="Next">Next</button>
           </div>
 
 

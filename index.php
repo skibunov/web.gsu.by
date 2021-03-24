@@ -1,3 +1,45 @@
+<?php 
+  session_start();
+
+if (empty($_SESSION['namePilot']))
+  $_SESSION['namePilot'] = "";
+
+if (empty($_SESSION['surnamePilot']))
+  $_SESSION['surnamePilot'] = "";
+
+if (empty($_SESSION['middleNamePilot']))
+  $_SESSION['middleNamePilot'] = "";
+
+if (empty($_SESSION['positionPilot']))
+  $_SESSION['positionPilot'] = "";
+
+if (empty($_SESSION['birthdayPilot']))
+  $_SESSION['birthdayPilot'] = "";
+
+if (empty($_SESSION['adressPilot']))
+  $_SESSION['adressPilot'] = "";
+
+if (empty($_SESSION['telPilot']))
+  $_SESSION['telPilot'] = "";
+
+  if (isset($_GET['next'])) {
+    $_SESSION['namePilot'] = $_GET['namePilot'];
+    $_SESSION['surnamePilot'] = $_GET['surnamePilot'];
+    $_SESSION['middleNamePilot'] = $_GET['middleNamePilot'];
+    $_SESSION['positionPilot'] = $_GET['positionPilot'];
+    $_SESSION['birthdayPilot'] = $_GET['birthdayPilot'];
+    $_SESSION['adressPilot'] = $_GET['adressPilot'];
+    $_SESSION['telPilot'] = $_GET['telPilot'];
+
+    header("Location: plane.php");
+  }
+
+  if (isset($_GET['preview'])) {
+    header("Location: airport.php");
+  }
+
+
+ ?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -52,41 +94,41 @@
         <form>
           <div class="form-group">
             <label>Имя пилота: <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" name="namePilot" autofocus required pattern="^[a-zA-Z]+$">
+            <input type="text" class="form-control" value="<?php echo($_SESSION['namePilot']); ?>" name="namePilot" autofocus required pattern="^[a-zA-Z]+$">
           </div>
 
           <div class="form-group">
             <label>Фамилия пилота: <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" name="surnamePilot" required pattern="^[a-zA-Z]+$">
+            <input type="text" class="form-control" value="<?php echo($_SESSION['surnamePilot']); ?>" name="surnamePilot" required pattern="^[a-zA-Z]+$">
           </div>
 
           <div class="form-group">
             <label for="secondNamePilot">Отчество пилота:</label>
-            <input type="text" class="form-control" name="middleNamePilot" pattern="^[a-zA-Z]+$">
+            <input type="text" class="form-control" value="<?php echo($_SESSION['middleNamePilot']); ?>" name="middleNamePilot" pattern="^[a-zA-Z]+$">
           </div>
 
           <div class="form-group">
             <label>Должность пилота: <span class="text-danger">*</span></label>
             <select class="form-control" name="positionPilot" required>
-              <option selected disabled value=''>Выбрать</option>
-              <option value="Первый пилот">Первый пилот</option>
-              <option value="Второй пилот">Второй пилот</option>
+              <option disabled value='' <?php echo $_SESSION['positionPilot'] == "" ? 'selected="selected"' : ''?>>Выбрать</option>
+              <option value="Первый пилот" <?php echo $_SESSION['positionPilot'] == "Первый пилот" ? 'selected="selected"' : ''?>>Первый пилот</option>
+              <option value="Второй пилот" <?php echo $_SESSION['positionPilot'] == "Второй пилот" ? 'selected="selected"' : ''?>>Второй пилот</option>
             </select>
           </div>
 
           <div class="form-group">
             <label>Введите дату рождения: <span class="text-danger">*</span></label>
-            <input type="date" class="form-control" name="birthdayPilot" required>
+            <input type="date" class="form-control" value="<?php echo($_SESSION['birthdayPilot']); ?>"  name="birthdayPilot" required>
           </div>
 
           <div class="form-group">
             <label>Адрес пилота:</label>
-            <input type="text" class="form-control" name="adressPilot">
+            <input type="text" class="form-control" value="<?php echo($_SESSION['adressPilot']); ?>"  name="adressPilot">
           </div>
 
           <div class="form-group">
             <label>Мобильный телефон пилота: <span class="text-danger">*</span></label>
-            <input type="tel" placeholder="+375" class="form-control" name="telPilot" required pattern="^[ 0-9]+$">
+            <input type="tel" placeholder="+375" class="form-control" value="<?php echo($_SESSION['telPilot']); ?>"  name="telPilot" required pattern="^[ 0-9]+$">
           </div>
 
           
@@ -94,7 +136,10 @@
             <button type="submit" value="Добавить пилота" name="submit" class="btn btn-primary">Добавить пилота</button>
             <button type="submit" formaction="php/addPilotFile.php" value="Запись в файл" name="writeFile" class="btn btn-secondary">Запись в файл</button>
           </div>
-
+          <div class="btn-group btn-block" role="group">
+            <button type="submit" class="btn btn-primary" name="preview" value="Preview">Preview</button>
+            <button type="submit" class="btn btn-secondary" name="next" value="Next">Next</button>
+          </div>
           
 
         </form>

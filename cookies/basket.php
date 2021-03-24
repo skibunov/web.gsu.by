@@ -2,13 +2,14 @@
 
 	if (isset($_POST['kyp'])) {
 		if (!isset($_COOKIE['basket'])) {
-			setcookie("basket",$_POST['kyp'],time()*36000);
+			setcookie("basket",$_POST['kyp'],time()+3600*24);
 			header("Refresh:0");
 		}else{
-			setcookie("basket",$_COOKIE['basket'].",".$_POST['kyp'],time()*36000);
+			setcookie("basket",$_COOKIE['basket'].",".$_POST['kyp'],time()+3600*24);
 			header("Refresh:0");
 		}
 	}
+
 
  ?>
 

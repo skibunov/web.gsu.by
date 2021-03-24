@@ -1,3 +1,48 @@
+<?php 
+  session_start();
+
+if (empty($_SESSION['nameAir']))
+  $_SESSION['nameAir'] = "";
+
+if (empty($_SESSION['countAir']))
+  $_SESSION['countAir'] = "";
+
+if (empty($_SESSION['countryAir']))
+  $_SESSION['countryAir'] = "";
+
+if (empty($_SESSION['dateAir']))
+  $_SESSION['dateAir'] = "";
+
+if (empty($_SESSION['countPlaneAir']))
+  $_SESSION['countPlaneAir'] = "";
+
+if (empty($_SESSION['countFlightAir']))
+  $_SESSION['countFlightAir'] = "";
+
+if (empty($_SESSION['season']))
+  $_SESSION['season'] = "";
+
+  if (isset($_GET['next'])) {
+    $Air = $_GET['Air'];
+    $_SESSION['nameAir'] = $Air["'nameAir'"];
+    $_SESSION['countAir'] = $Air["'countAir'"]; 
+    $_SESSION['countryAir'] = $Air["'countryAir'"];
+    $_SESSION['dateAir'] = $Air["'dateAir'"];
+    $_SESSION['countPlaneAir'] = $Air["'countPlaneAir'"];
+    $_SESSION['countFlightAir'] = $Air["'countFlightAir'"];
+    $_SESSION['season'] = $Air["'season'"];
+
+    header("Location: index.php");
+  }
+
+  if (isset($_GET['preview'])) {
+    header("Location: plane.php");
+  }
+
+  
+
+ ?>
+
 <!doctype html>
 <html lang="ru">
 <head>
@@ -43,63 +88,76 @@
   <div class="container">
     <div class="row">
       <div class="col-6 mx-auto Larger shadow p-5 mb-5" style="border-radius: 15px;">
-        <form action="php/addAirport.php">
+        <form>
           <div class="form-group">
             <label>Название аэропорта: <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" name="Air['nameAir']" required>
+            <input type="text" class="form-control" value="<?php echo($_SESSION['nameAir']); ?>" name="Air['nameAir']" required>
           </div>
           <div class="form-group">
             <label>Количество взлетных полос: <span class="text-danger">*</span></label>
-            <input type="number" class="form-control" size="0" name="Air['countAir']" min="1" value="1" required>
+            <input type="number" class="form-control" value="<?php echo($_SESSION['countAir']); ?>"  size="0" name="Air['countAir']" min="1" value="1" required>
           </div>
           <div class="form-group">
             <label>Местоположение аэропорта: <span class="text-danger">*</span></label>
             <select class="form-control" name="Air['countryAir']" required>
-              <option>США</option>
-              <option>ЕВРОПА</option>
-              <option>РОССИЯ</option>
-              <option>БЕЛАРУСЬ</option>
+              <option <?php echo $_SESSION['countryAir'] == "США" ? 'selected="selected"' : ''?>>США</option>
+              <option <?php echo $_SESSION['countryAir'] == "ЕВРОПА" ? 'selected="selected"' : ''?>>ЕВРОПА</option>
+              <option <?php echo $_SESSION['countryAir'] == "РОССИЯ" ? 'selected="selected"' : ''?>>РОССИЯ</option>
+              <option <?php echo $_SESSION['countryAir'] == "БЕЛАРУСЬ" ? 'selected="selected"' : ''?>>БЕЛАРУСЬ</option>
             </select>
           </div>
 
           <div class="form-group">
             <label>Дата основания аэропорта: <span class="text-danger">*</span></label>
-            <input type="date" class="form-control" name="Air['dateAir']" required>
+            <input type="date" class="form-control" value="<?php echo($_SESSION['dateAir']); ?>"  name="Air['dateAir']" required>
           </div>
 
           <div class="form-group">
             <label>Количество самолётов: <span class="text-danger">*</span></label>
-            <input type="number" class="form-control" size="0" name="Air['countPlaneAir']" min="1" value="1" required>
+            <input type="number" class="form-control" value="<?php echo($_SESSION['countPlaneAir']); ?>"  size="0" name="Air['countPlaneAir']" min="1" value="1" required>
           </div>
           
           <div class="form-group">
             <label>Количество рейсов, осуществляемых данным аэропортом: <span class="text-danger">*</span></label>
-            <input type="number" class="form-control" size="0" name="Air['countFlightAir']" min="1" value="1" required>
+            <input type="number" class="form-control" value="<?php echo($_SESSION['countFlightAir']); ?>"  size="0" name="Air['countFlightAir']" min="1" value="1" required>
           </div>
 
           
           <div class="form-group">
             <label>Сезоны работаспособность аэропорта: </label>
             <div class="form-check">
-              <input class="form-check-input" id="spring" type="checkbox" value="Весна" name="Air['season']['spring']">
+              <input class="form-check-input" id="spring" type="checkbox" <?php   
+              foreach ($_SESSION['season'] as $key => $value) {
+                echo $value== "Весна" ? 'checked="checked"' : '';
+              } ?>  value="Весна" name="Air['season']['spring']">
+
               <label class="form-check-label" for="spring">
                 Весна
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" id="autumn" type="checkbox" value="Осень" name="Air['season']['autumn']">
+              <input class="form-check-input" id="autumn" type="checkbox" <?php   
+              foreach ($_SESSION['season'] as $key => $value) {
+                echo $value== "Осень" ? 'checked="checked"' : '';
+              } ?> value="Осень" name="Air['season']['autumn']">
               <label class="form-check-label" for="autumn">
                 Осень
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" id="winter" type="checkbox" value="Зима" name="Air['season']['winter']">
+              <input class="form-check-input" id="winter" type="checkbox" <?php   
+              foreach ($_SESSION['season'] as $key => $value) {
+                echo $value== "Зима" ? 'checked="checked"' : '';
+              } ?> value="Зима" name="Air['season']['winter']">
               <label class="form-check-label" for="winter">
                 Зима
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" id="summer" type="checkbox" value="Лето" name="Air['season']['summer']">
+              <input class="form-check-input" id="summer" type="checkbox" <?php   
+              foreach ($_SESSION['season'] as $key => $value) {
+                echo $value== "Лето" ? 'checked="checked"' : '';
+              } ?> value="Лето" name="Air['season']['summer']">
               <label class="form-check-label" for="summer">
                 Лето
               </label>
@@ -108,8 +166,13 @@
 
 
           <div class="btn-group btn-block" role="group">
-            <button type="submit" class="btn btn-primary">Добавить пилота</button>
+            <button type="submit" formaction="php/addAirport.php" class="btn btn-primary">Добавить пилота</button>
             <button type="submit" formaction="php/addAirportFile.php" value="Запись в файл" name="writeFile" class="btn btn-secondary">Запись в файл</button>
+          </div>
+
+          <div class="btn-group btn-block" role="group">
+            <button type="submit" class="btn btn-primary" name="preview" value="Preview">Preview</button>
+            <button type="submit" class="btn btn-secondary" name="next" value="Next">Next</button>
           </div>
 
         </form>
