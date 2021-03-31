@@ -20,7 +20,7 @@ if (empty($_SESSION['datePlane']))
   $_SESSION['datePlane'] = "";
 
 if (empty($_SESSION['flightsPlane']))
-  $_SESSION['flightsPlane'] = "";
+  $_SESSION['flightsPlane'] = array();
 
   if (isset($_GET['next'])) {
     $_SESSION['numberPlane'] = $_GET['numberPlane'];
@@ -35,8 +35,26 @@ if (empty($_SESSION['flightsPlane']))
   }
 
   if (isset($_GET['preview'])) {
+    $_SESSION['numberPlane'] = $_GET['numberPlane'];
+    $_SESSION['modelPlane'] = $_GET['modelPlane'];
+    $_SESSION['countPlane'] = $_GET['countPlane'];
+    $_SESSION['controlPlane'] = $_GET['controlPlane'];
+    $_SESSION['countryPlane'] = $_GET['countryPlane'];
+    $_SESSION['datePlane'] = $_GET['datePlane'];
+    $_SESSION['flightsPlane'] = $_GET['flightsPlane'];
+
     header("Location: index.php");
   }
+
+    //Авторизация
+  if (isset($_SESSION['login']))
+    $login = $_SESSION['login'];
+
+  if (isset($_SESSION['role']))
+    $role = $_SESSION['role'];
+
+  if (isset($_SESSION['auth']))
+    $auth = $_SESSION['auth'];
 
  ?>
 
@@ -64,7 +82,10 @@ if (empty($_SESSION['flightsPlane']))
       <div class="row">
         <div class="col-lg-10 col-md-10 mx-auto">
          <h1>Самолет</h1>
-         <p>Форма для заполнения самолета!</p>
+        <?php if (isset($auth)) {
+           echo("<p> Логин: ".$login."; Роль:".$role."</p>");
+         } ?>
+         <?php if (isset($auth)) { ?>
           <div class="btn-toolbar" role="toolbar" style="justify-content: center; display: flex;" >
           <div class="btn-group mr-2" role="group">
             <a type="submit" href="php/readPlanesFile.php" class="btn btn-secondary">Просмотр содержимого файла</a>
@@ -76,6 +97,7 @@ if (empty($_SESSION['flightsPlane']))
             <a type="submit" href="php/searchPlanesFile.php" class="btn btn-secondary">Поиск данных</a>
           </div>
         </div>
+      <?php } ?>
        </div>
      </div>
    </div>
@@ -84,6 +106,7 @@ if (empty($_SESSION['flightsPlane']))
  <main class="main">
   <div class="container">
     <div class="row">
+      <?php if (isset($role) && $role == "admin") { ?>
       <div class="col-6 mx-auto Larger shadow p-5 mb-5" style="border-radius: 15px;">
         <form>
           <div class="form-group">
@@ -146,14 +169,17 @@ if (empty($_SESSION['flightsPlane']))
             <button type="submit" formaction="php/addPlaneFile.php" value="Запись в файл" name="writeFile" class="btn btn-secondary">Запись в файл</button>
           </div>
 
-          <div class="btn-group btn-block" role="group">
-            <button type="submit" class="btn btn-primary" name="preview" value="Preview">Preview</button>
-            <button type="submit" class="btn btn-secondary" name="next" value="Next">Next</button>
-          </div>
-
+        <div class="btn-group btn-block" role="group">
+          <button type="submit" class="btn btn-primary" name="preview" value="Preview">Preview</button>
+          <button type="submit" class="btn btn-secondary" name="next" value="Next">Next</button>
+        </div>
 
       </form>
     </div>
+    <?php } else if (!isset($auth)) {?>
+          <h1><a href="auth/index.php">Авторизуйтесь</a></h1>
+
+      <?php } ?>
   </div>
 </div>
 </main> 

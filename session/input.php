@@ -4,6 +4,7 @@
 		if (empty($_SESSION['email'])) {
 			$_SESSION['email'] = $_POST['email'];
 		}
+     header("Refresh:0");
 	}
 
  ?>

@@ -7,8 +7,6 @@ if (!isset($_SESSION['time'])) {
   $_SESSION['time'] = $_SESSION['time'] + 1;
 }
 
-//сколько секунд назад
-
 
 //Добавление в session items
 if (isset($_POST['add'])) {
@@ -48,12 +46,17 @@ if (isset($_POST['add'])) {
          <h1>Session</h1>
          <div class="badge badge-primary">
           <h6>Вы посетили наш сайт <?php echo($_SESSION['time']); ?> раз!</h6>
-          <h6>Дата последнего посещения   минут</h6>
+          <h6>Дата последнего посещения <?= isset($_SESSION['lastTime']) ? time() - $_SESSION['lastTime'] : 'НЕ ЗАХОДИЛИ' ?> секунд</h6>
         </div>
       </div>
     </div>
   </div>
 </header>
+
+<?php 
+  //сколько секунд назад
+  $_SESSION['lastTime'] = time();
+ ?>
 
 <main class="main">
   <div class="container">
@@ -75,10 +78,12 @@ if (isset($_POST['add'])) {
           <?php foreach ($item as $key => $value) { ?>
           <div class="col-4 mb-5">
             <div class="card">
-              <img class="card-img-top" src="<?php echo($value["image"]) ?>" alt="Card image cap">
+              <img class="card-img-top" src="<?php echo($value["img"]) ?>" alt="Card image cap">
               <div class="card-body">
+                <h3 class="card-title"><?php echo($value["name"]) ?></h3>
+                <p class="card-text"><?php  echo($value["description"]) ?></p>
                 <p class="card-text"><input type="text" class="form-control" value="<?php echo($value["cost"]) ?>" disabled></p>
-                <button class="btn btn-primary" value="<?php echo($key); ?>" name="add">Положить в корзину</button> 
+                <button class="btn btn-primary" value="<?php echo($value["id"]); ?>" name="add">Положить в корзину</button> 
               </div>
             </div>   
           </div>

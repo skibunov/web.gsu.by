@@ -9,8 +9,9 @@
 	
 	$sum = 0;
 	foreach ($arr as $value) {
-		$sum = $item[$value]["cost"] + $sum;
+		$sum = $item[$value - 1]["cost"] + $sum;
 	}
+
 
  ?>
 <!doctype html>
@@ -34,9 +35,11 @@
           <?php foreach ($arr as $value) { ?>
           <div class="col-4 mb-5">
             <div class="card">
-              <img class="card-img-top" src="<?php echo($item[$value]["image"]) ?>" alt="Card image cap">
+              <img class="card-img-top" src="<?php echo($item[$value - 1]["img"]) ?>" alt="Card image cap">
               <div class="card-body">
-                <p class="card-text"><input type="text" class="form-control" value="<?php echo($item[$value]["cost"]) ?>" disabled></p>
+                <h3 class="card-title"><?php echo($item[$value - 1]["name"]) ?></h3>
+                <p class="card-text"><?php  echo($item[$value - 1]["description"]) ?></p>
+                <p class="card-text"><input type="text" class="form-control" value="<?php echo($item[$value - 1]["cost"]) ?>" disabled></p>
               </div>
             </div>   
           </div>

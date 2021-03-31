@@ -35,9 +35,26 @@ if (empty($_SESSION['telPilot']))
   }
 
   if (isset($_GET['preview'])) {
+    $_SESSION['namePilot'] = $_GET['namePilot'];
+    $_SESSION['surnamePilot'] = $_GET['surnamePilot'];
+    $_SESSION['middleNamePilot'] = $_GET['middleNamePilot'];
+    $_SESSION['positionPilot'] = $_GET['positionPilot'];
+    $_SESSION['birthdayPilot'] = $_GET['birthdayPilot'];
+    $_SESSION['adressPilot'] = $_GET['adressPilot'];
+    $_SESSION['telPilot'] = $_GET['telPilot'];
+
     header("Location: airport.php");
   }
 
+//Авторизация
+  if (isset($_SESSION['login']))
+    $login = $_SESSION['login'];
+
+  if (isset($_SESSION['role']))
+    $role = $_SESSION['role'];
+
+  if (isset($_SESSION['auth']))
+    $auth = $_SESSION['auth'];
 
  ?>
 <!doctype html>
@@ -64,7 +81,10 @@ if (empty($_SESSION['telPilot']))
       <div class="row">
         <div class="col-lg-10 col-md-10 mx-auto">
          <h1>Пилот</h1>
-         <p>Форма для заполнения пилота!</p>
+         <?php if (isset($auth)) {
+           echo("<p> Логин: ".$login."; Роль:".$role."</p>");
+         } ?>
+         <?php if (isset($auth)) { ?>
          <div class="btn-toolbar" role="toolbar" style="justify-content: center; display: flex;" >
           <div class="btn-group mr-2" role="group">
             <a type="submit" href="php/readPilotsFile.php" class="btn btn-secondary">Просмотр содержимого файла</a>
@@ -76,6 +96,7 @@ if (empty($_SESSION['telPilot']))
             <a type="submit" href="php/searchPilotsFile.php" class="btn btn-secondary">Поиск данных</a>
           </div>
         </div>
+      <?php } ?>
 
       </div>
     </div>
@@ -90,6 +111,7 @@ if (empty($_SESSION['telPilot']))
         <?php include_once 'php/addPilot.php'; ?>
       </div>  
 
+      <?php if (isset($role) && $role == "admin") { ?>
       <div class="col-6 mx-auto Larger shadow p-5 mb-5" style="border-radius: 15px;">
         <form>
           <div class="form-group">
@@ -136,14 +158,17 @@ if (empty($_SESSION['telPilot']))
             <button type="submit" value="Добавить пилота" name="submit" class="btn btn-primary">Добавить пилота</button>
             <button type="submit" formaction="php/addPilotFile.php" value="Запись в файл" name="writeFile" class="btn btn-secondary">Запись в файл</button>
           </div>
+
           <div class="btn-group btn-block" role="group">
             <button type="submit" class="btn btn-primary" name="preview" value="Preview">Preview</button>
             <button type="submit" class="btn btn-secondary" name="next" value="Next">Next</button>
           </div>
-          
-
         </form>
       </div>
+      <?php } else if (!isset($auth)) {?>
+          <h1><a href="auth/index.php">Авторизуйтесь</a></h1>
+
+      <?php } ?>
     </div>
 
 

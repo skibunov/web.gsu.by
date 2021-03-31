@@ -1,0 +1,23 @@
+[
+   {
+      "id":1,
+      "name":"Plane 1",
+      "description":"1681",
+      "cost":4300,
+      "img":"img/1.jpg"
+   },
+   {
+      "id":2,
+      "name":"Plane 2",
+      "description":"94123",
+      "cost":7300,
+      "img":"img/1.jpg"
+   },
+   {
+      "id":3,
+      "name":"Plane 3",
+      "description":"94123",
+      "cost":7300,
+      "img":"img/1.jpg"
+   }
+]

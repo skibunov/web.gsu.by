@@ -20,7 +20,7 @@ if (empty($_SESSION['countFlightAir']))
   $_SESSION['countFlightAir'] = "";
 
 if (empty($_SESSION['season']))
-  $_SESSION['season'] = "";
+  $_SESSION['season'] = array();
 
   if (isset($_GET['next'])) {
     $Air = $_GET['Air'];
@@ -36,12 +36,30 @@ if (empty($_SESSION['season']))
   }
 
   if (isset($_GET['preview'])) {
+    $Air = $_GET['Air'];
+    $_SESSION['nameAir'] = $Air["'nameAir'"];
+    $_SESSION['countAir'] = $Air["'countAir'"]; 
+    $_SESSION['countryAir'] = $Air["'countryAir'"];
+    $_SESSION['dateAir'] = $Air["'dateAir'"];
+    $_SESSION['countPlaneAir'] = $Air["'countPlaneAir'"];
+    $_SESSION['countFlightAir'] = $Air["'countFlightAir'"];
+    $_SESSION['season'] = $Air["'season'"];
+
+
     header("Location: plane.php");
   }
 
-  
+  //Авторизация
+  if (isset($_SESSION['login']))
+    $login = $_SESSION['login'];
 
- ?>
+  if (isset($_SESSION['role']))
+    $role = $_SESSION['role'];
+
+  if (isset($_SESSION['auth']))
+    $auth = $_SESSION['auth'];
+
+ ?>  
 
 <!doctype html>
 <html lang="ru">
@@ -67,7 +85,10 @@ if (empty($_SESSION['season']))
       <div class="row">
         <div class="col-lg-10 col-md-10 mx-auto">
          <h1>Аэропорт</h1>
-         <p>Форма для заполнения аэропорта!</p>
+        <?php if (isset($auth)) {
+           echo("<p> Логин: ".$login."; Роль:".$role."</p>");
+         } ?>
+          <?php if (isset($auth)) { ?>
           <div class="btn-toolbar" role="toolbar" style="justify-content: center; display: flex;" >
           <div class="btn-group mr-2" role="group">
             <a type="submit" href="php/readAirportsFile.php" class="btn btn-secondary">Просмотр содержимого файла</a>
@@ -79,6 +100,7 @@ if (empty($_SESSION['season']))
             <a type="submit" href="php/searchAirportsFile.php" class="btn btn-secondary">Поиск данных</a>
           </div>
         </div>
+      <?php } ?>
        </div>
      </div>
    </div>
@@ -87,6 +109,7 @@ if (empty($_SESSION['season']))
  <main class="main">
   <div class="container">
     <div class="row">
+      <?php if (isset($role) && $role == "admin") { ?>
       <div class="col-6 mx-auto Larger shadow p-5 mb-5" style="border-radius: 15px;">
         <form>
           <div class="form-group">
@@ -177,6 +200,10 @@ if (empty($_SESSION['season']))
 
         </form>
       </div>
+      <?php } else if (!isset($auth)) {?>
+          <h1><a href="auth/index.php">Авторизуйтесь</a></h1>
+
+      <?php } ?>
     </div>
   </div>
 </main> 
