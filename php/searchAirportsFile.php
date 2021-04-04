@@ -16,7 +16,7 @@
 		$array[$i]["'season'"] = implode($array[$i]["'season'"],",");
 	}
 
-	$search[] = "";
+	$search = "";
 	if (isset($_GET['search'])) {
 		for ($i = 0; $i < count($array); $i++) { 
 			if ($array[$i][$fieldSearch] == $nameSearch || strpos($array[$i][$fieldSearch], $nameSearch) || is_int(strpos($array[$i][$fieldSearch], $nameSearch))) {
@@ -26,7 +26,6 @@
 	} else {
 		$search = $array;
 	}
-
 
 	$table = "";
 	foreach ($search as $str){  
