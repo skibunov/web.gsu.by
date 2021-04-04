@@ -25,13 +25,13 @@
          <p>Форма для заполнения самолета!</p>
           <div class="btn-toolbar" role="toolbar" style="justify-content: center; display: flex;" >
           <div class="btn-group mr-2" role="group">
-            <a type="submit" href="php/readPlanesFile.php" class="btn btn-secondary">Просмотр содержимого файла</a>
+            <a type="submit" href="php/readPlanes.php" class="btn btn-secondary">Просмотр содержимого файла</a>
           </div>
           <div class="btn-group mr-2" role="group">
-            <a type="submit" href="php/sortPlanesFile.php" class="btn btn-secondary">Сортировка данных</a>
+            <a type="submit" href="php/sortPlanes.php" class="btn btn-secondary">Сортировка данных</a>
           </div>
           <div class="btn-group" role="group">
-            <a type="submit" href="php/searchPlanesFile.php" class="btn btn-secondary">Поиск данных</a>
+            <a type="submit" href="php/searchPlanes.php" class="btn btn-secondary">Поиск данных</a>
           </div>
         </div>
        </div>
@@ -96,18 +96,13 @@
           </div>
 
           <div class="btn-group btn-block" role="group">
-            <button type="submit" class="btn btn-primary">Добавить самолет</button>
-            <button type="submit" formaction="php/addPlaneFile.php" value="Запись в файл" name="writeFile" class="btn btn-secondary">Запись в файл</button>
+            <button type="submit" name="submit" class="btn btn-primary">Добавить самолет в базу</button>
           </div>
-
-
       </form>
     </div>
   </div>
 </div>
 </main> 
-
-
 <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,19 +1,21 @@
 <?php 
+	
+	include_once "../database/connection.php";
+	if (isset($_GET['submit'])) {
+		if (isset($_GET['Air']))
+			$air = $_GET['Air'];
 
-	if(isset($_GET['Air']))
-		$Air = $_GET['Air'];
+		$season = "";
+		foreach ($air["'season'"] as $value) {
+			$season.= $value.",";
+		}
 
+	}
+	
+	$INSERT_QUERY = "INSERT INTO airport (name, count, country, `datetime`, count_plane, count_flight, season) VALUES ('".$air["'nameAir'"]."', '".$air["'countAir'"]."', '".$air["'countryAir'"]."', '".$air["'dateAir'"]."', '".$air["'countPlaneAir'"]."', '".$air["'countFlightAir'"]."', '".$season."')";
 
-	if(!empty($Air["'season'"]))
-		$season = implode('<br>',$Air["'season'"]);
-	else
-		$season = "Не указано"
-
-
- ?>
-
-
- <!doctype html>
+?>
+<!doctype html>
 <html lang="ru">
 <head>
   <!-- Required meta tags -->
@@ -26,34 +28,22 @@
   <title>Hello, world!</title>
 </head>
 <body>
-	<div class="col-10 mx-auto">
-	<h1 class="text-center">Таблица Аэропортов</h1>
-	<table class="table table-bordered">
-	  <thead>
-	    <tr>
-	      <th scope="col">Название</th>
-	      <th scope="col">Количество взлетных полос</th>
-	      <th scope="col">Местоположение аэропорта </th>
-	      <th scope="col">Дата основания аэропорта</th>
-	      <th scope="col">Количество самолётов</th>
-	      <th scope="col">Количество рейсов</th>
-	      <th scope="col">Работоспособность аэропорта</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr>
-	      <td><?php echo $Air["'nameAir'"]; ?></ts>
-	      <td><?php echo $Air["'countAir'"]; ?></td>
-	      <td><?php echo $Air["'countryAir'"]; ?></td>
-	      <td><?php echo $Air["'dateAir'"]; ?></td>
-	      <td><?php echo $Air["'countPlaneAir'"]; ?></td>
-	      <td><?php echo $Air["'countFlightAir'"]; ?></td>
-	      <td><?php echo $season; ?></td>
-	    </tr>
-	  </tbody>
-	</table>
+	<div class="col-10 mx-auto p-5">
+	<?php if (mysqli_query($conn, $INSERT_QUERY)) { ?>
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+  		<strong>Успешно!</strong> Данные добавлены в базу данных
+  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    		<span aria-hidden="true">&times;</span>
+  		</button>
 	</div>
-
-
+	<?php } else {  ?>
+	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	  <strong>Не добавленно!</strong> Ошибка при добавлении в базу данных
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+	<?php } ?>	
+	</div>
 </body>
 </html>

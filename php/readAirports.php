@@ -1,27 +1,23 @@
 <?php 
 
-	$file = fopen("../airportList.txt", "rt") or die("Невозможно открыть файл");
+	include_once "../database/connection.php";
+
+	$SELECT_QUERY = "SELECT * FROM airport";
+
+	$result = mysqli_query($conn, $SELECT_QUERY);
 
 	$table = "";
-	for($i = 0; $str = fgets($file); $i++){  
-		$array = unserialize($str);
-		if (!empty($array)) {
-			$table .= "<tr>";
-			$table .= "<td>".$array["'nameAir'"]."</td>";
-			$table .= "<td>".$array["'countAir'"]."</td>";
-			$table .= "<td>".$array["'countryAir'"]."</td>";
-			$table .= "<td>".$array["'dateAir'"]."</td>";
-			$table .= "<td>".$array["'countPlaneAir'"]."</td>";
-			$table .= "<td>".$array["'countFlightAir'"]."</td>";
-			$table .= "<td>";
-			foreach ($array["'season'"] as $value) {
-				$table.= $value."<br>";
-			}
-			$table .= "</td>";
-			$table .= "</tr>";
-		}
-	}
-
+	while ($row = $result->fetch_assoc()) { 
+     	$table .= "<tr>";
+		$table .= "<td>".$row['name']."</td>";
+		$table .= "<td>".$row['count']."</td>";
+		$table .= "<td>".$row['country']."</td>";
+		$table .= "<td>".$row['datetime']."</td>";
+		$table .= "<td>".$row['count_plane']."</td>";
+		$table .= "<td>".$row['count_flight']."</td>";
+		$table .= "<td>".$row['season']."</td>";
+		$table .= "</tr>";
+	} 
  ?>
 
 <!doctype html>

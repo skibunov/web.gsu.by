@@ -25,13 +25,13 @@
          <p>Форма для заполнения аэропорта!</p>
           <div class="btn-toolbar" role="toolbar" style="justify-content: center; display: flex;" >
           <div class="btn-group mr-2" role="group">
-            <a type="submit" href="php/readAirportsFile.php" class="btn btn-secondary">Просмотр содержимого файла</a>
+            <a type="submit" href="php/readAirports.php" class="btn btn-secondary">Просмотр содержимого файла</a>
           </div>
           <div class="btn-group mr-2" role="group">
-            <a type="submit" href="php/sortAirportsFile.php" class="btn btn-secondary">Сортировка данных</a>
+            <a type="submit" href="php/sortAirports.php" class="btn btn-secondary">Сортировка данных</a>
           </div>
           <div class="btn-group" role="group">
-            <a type="submit" href="php/searchAirportsFile.php" class="btn btn-secondary">Поиск данных</a>
+            <a type="submit" href="php/searchAirports.php" class="btn btn-secondary">Поиск данных</a>
           </div>
         </div>
        </div>
@@ -108,8 +108,7 @@
 
 
           <div class="btn-group btn-block" role="group">
-            <button type="submit" class="btn btn-primary">Добавить пилота</button>
-            <button type="submit" formaction="php/addAirportFile.php" value="Запись в файл" name="writeFile" class="btn btn-secondary">Запись в файл</button>
+            <button type="submit" name="submit" class="btn btn-primary">Добавить пилота</button>
           </div>
 
         </form>

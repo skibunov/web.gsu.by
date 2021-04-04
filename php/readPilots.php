@@ -1,25 +1,22 @@
 <?php 
+	include_once "../database/connection.php";
 
-	$file = fopen("../pilotsList.txt", "rt") or die("Невозможно открыть файл");
+	$SELECT_QUERY = "SELECT * FROM pilots";
+
+	$result = mysqli_query($conn, $SELECT_QUERY);
 
 	$table = "";
-	for($i = 0; $str = fgets($file); $i++){  
-		$array = explode("|",$str);
-		if (!empty($array)){
-			list($namePilot,$surnamePilot,$middleNamePilot,$positionPilot,$birthdayPilot,$adressPilot,$telPilot) = $array;
-		 	$table .= "<tr>";
-			$table .= "<td>".$namePilot."</td>";
-			$table .= "<td>".$surnamePilot."</td>";
-			$table .= "<td>".$middleNamePilot."</td>";
-			$table .= "<td>".$positionPilot."</td>";
-			$table .= "<td>".$birthdayPilot."</td>";
-			$table .= "<td>".$adressPilot."</td>";
-			$table .= "<td>".$telPilot."</td>";
-			$table .= "</tr>";
-		}
-	 }	
-
-	fclose($file); 
+	while ($row = $result->fetch_assoc()) { 
+     	$table .= "<tr>";
+		$table .= "<td>".$row['firstname']."</td>";
+		$table .= "<td>".$row['lastname']."</td>";
+		$table .= "<td>".$row['middlename']."</td>";
+		$table .= "<td>".$row['position']."</td>";
+		$table .= "<td>".$row['birthday']."</td>";
+		$table .= "<td>".$row['adress']."</td>";
+		$table .= "<td>".$row['phone']."</td>";
+		$table .= "</tr>";
+	} 
 
 ?>
 <!doctype html>

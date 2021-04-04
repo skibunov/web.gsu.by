@@ -1,24 +1,22 @@
 <?php 
+	include_once "../database/connection.php";
 
-	$str  = file("../planesList.txt");
+	$SELECT_QUERY = "SELECT * FROM plane";
+
+	$result = mysqli_query($conn, $SELECT_QUERY);
 
 	$table = "";
-	foreach ($str as $v) {
-		$array = explode("|",$v);
-		if (!empty($array)){
-			list($numberPlane,$modelPlane,$countPlane,$controlPlane,$countryPlane,$datePlane,$flightsPlane) = $array;
-			$flightsPlane = str_replace(",","<br>", $flightsPlane);
-			$table .= "<tr>";
-			$table .= "<td>".$numberPlane."</td>";
-			$table .= "<td>".$modelPlane."</td>";
-			$table .= "<td>".$countPlane."</td>";
-			$table .= "<td>".$controlPlane."</td>";
-			$table .= "<td>".$countryPlane."</td>";
-			$table .= "<td>".$datePlane."</td>";
-			$table .= "<td>".$flightsPlane."</td>";
-			$table .= "</tr>";
-		}
-	}
+	while ($row = $result->fetch_assoc()) { 
+     	$table .= "<tr>";
+		$table .= "<td>".$row['numb']."</td>";
+		$table .= "<td>".$row['model']."</td>";
+		$table .= "<td>".$row['count']."</td>";
+		$table .= "<td>".$row['status']."</td>";
+		$table .= "<td>".$row['country']."</td>";
+		$table .= "<td>".$row['year']."</td>";
+		$table .= "<td>".$row['flights']."</td>";
+		$table .= "</tr>";
+	} 
 
  ?>
   <!doctype html>

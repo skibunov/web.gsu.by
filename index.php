@@ -25,13 +25,13 @@
          <p>Форма для заполнения пилота!</p>
          <div class="btn-toolbar" role="toolbar" style="justify-content: center; display: flex;" >
           <div class="btn-group mr-2" role="group">
-            <a type="submit" href="php/readPilotsFile.php" class="btn btn-secondary">Просмотр содержимого файла</a>
+            <a type="submit" href="php/readPilots.php" class="btn btn-secondary">Просмотр содержимого файла</a>
           </div>
           <div class="btn-group mr-2" role="group">
-            <a type="submit" href="php/sortPilotsFile.php" class="btn btn-secondary">Сортировка данных</a>
+            <a type="submit" href="php/sortPilots.php" class="btn btn-secondary">Сортировка данных</a>
           </div>
           <div class="btn-group" role="group">
-            <a type="submit" href="php/searchPilotsFile.php" class="btn btn-secondary">Поиск данных</a>
+            <a type="submit" href="php/searchPilots.php" class="btn btn-secondary">Поиск данных</a>
           </div>
         </div>
 
@@ -43,26 +43,21 @@
 <main class="main">
   <div class="container">
     <div class="row">
-
-      <div class="col-10 mx-auto">
-        <?php include_once 'php/addPilot.php'; ?>
-      </div>  
-
       <div class="col-6 mx-auto Larger shadow p-5 mb-5" style="border-radius: 15px;">
-        <form>
+        <form method="GET" action="php/addPilot.php">
           <div class="form-group">
             <label>Имя пилота: <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" name="namePilot" autofocus required pattern="^[a-zA-Z]+$">
+            <input type="text" class="form-control" name="namePilot" autofocus required>
           </div>
 
           <div class="form-group">
             <label>Фамилия пилота: <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" name="surnamePilot" required pattern="^[a-zA-Z]+$">
+            <input type="text" class="form-control" name="surnamePilot" required>
           </div>
 
           <div class="form-group">
             <label for="secondNamePilot">Отчество пилота:</label>
-            <input type="text" class="form-control" name="middleNamePilot" pattern="^[a-zA-Z]+$">
+            <input type="text" class="form-control" name="middleNamePilot">
           </div>
 
           <div class="form-group">
@@ -86,17 +81,13 @@
 
           <div class="form-group">
             <label>Мобильный телефон пилота: <span class="text-danger">*</span></label>
-            <input type="tel" placeholder="+375" class="form-control" name="telPilot" required pattern="^[ 0-9]+$">
+            <input type="tel" placeholder="+375" class="form-control" name="telPilot" required>
           </div>
 
           
           <div class="btn-group btn-block" role="group">
-            <button type="submit" value="Добавить пилота" name="submit" class="btn btn-primary">Добавить пилота</button>
-            <button type="submit" formaction="php/addPilotFile.php" value="Запись в файл" name="writeFile" class="btn btn-secondary">Запись в файл</button>
+            <button type="submit" value="Добавить пилота" name="submit" class="btn btn-primary">Добавить пилота в базу</button>
           </div>
-
-          
-
         </form>
       </div>
     </div>
