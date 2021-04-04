@@ -39,25 +39,25 @@ if (isset($_GET['preview'])) {
             <label>Настя обнаружила, что цвет ссылок меняется, когда они являются посещёнными. Какой CSS-код необходимо задать, чтобы цвет посещённых и непосещённых ссылок был одним и тем же:</label>
             <form>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="q7" <?php echo $_SESSION['q6'] == "1" ? 'checked="checked"' : ''?> value="1">
+                <input class="form-check-input" type="radio" name="q9" <?php echo $_SESSION['q9'] == "1" ? 'checked="checked"' : ''?> value="1">
                 <label class="form-check-label">
                   a:link {color: yellow;}
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="q7" <?php echo $_SESSION['q6'] == "2" ? 'checked="checked"' : ''?> value="2">
+                <input class="form-check-input" type="radio" name="q9" <?php echo $_SESSION['q9'] == "2" ? 'checked="checked"' : ''?> value="2">
                 <label class="form-check-label">
                   a:link, a:active {color: yellow;}
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="q7" <?php echo $_SESSION['q6'] == "3" ? 'checked="checked"' : ''?> value="3">
+                <input class="form-check-input" type="radio" name="q9" <?php echo $_SESSION['q9'] == "3" ? 'checked="checked"' : ''?> value="3">
                 <label class="form-check-label">
                   a:link, a:visited {color: yellow;}
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="q7" <?php echo $_SESSION['q6'] == "4" ? 'checked="checked"' : ''?> value="4">
+                <input class="form-check-input" type="radio" name="q9" <?php echo $_SESSION['q9'] == "4" ? 'checked="checked"' : ''?> value="4">
                 <label class="form-check-label">
                   a:active, a:visited {color: yellow;}
                 </label>

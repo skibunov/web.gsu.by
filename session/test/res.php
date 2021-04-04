@@ -18,26 +18,28 @@
  	$res++;
  }
 
- if ($_SESSION['q6'] == 2) {
+ if ($_SESSION['q5'] == 2) {
  	$res++;
  }
 
- if ($_SESSION['q7'] == 3) {
+ if ($_SESSION['q6'] == 3) {
  	$res++;
  }
 
- if ($_SESSION['q8'] == 1) {
+ if ($_SESSION['q7'] == 1) {
  	$res++;
  }
 
-  if ($_SESSION['q9'] == 3) {
+  if ($_SESSION['q8'] == 3) {
  	$res++;
  }
-   if ($_SESSION['q10'] == 1) {
+   if ($_SESSION['q9'] == 1) {
  	$res++;
+ }
+    if ($_SESSION['q10'] == 1) {
+  $res++;
  }
 
- $res = $res / 10 *100;
 
  ?>
 <!doctype html>
@@ -56,7 +58,7 @@
     <div class="container">
       <div class="row">
         <div class="col-6 mx-auto Larger shadow p-5 mb-5" style="border-radius: 15px;">
-          <h1>Ваш результа - <?php echo($res); ?></h1>
+          <h1>Ваш результат - <?php echo($res); ?></h1>
         </div>
       </div>
     </div>

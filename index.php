@@ -176,6 +176,14 @@ if (empty($_SESSION['telPilot']))
 </div>
 </main> 
 
+<footer class="footer text-muted py-5 bg-light ">
+  <div class="container">
+    <p class="mt-0 mb-0">
+      <a href="mailto:admin@artifakt.org"><i class="fas fa-envelope fa-lg text-dark"></i></a>
+    </p>
+    <p class="mb-0 mt-0">© 2020 Copyright <span class="text-dark">Скибунов Андрей</span>.</p>
+  </div>
+</footer>
 
 
 

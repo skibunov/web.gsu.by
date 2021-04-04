@@ -39,25 +39,25 @@ if (isset($_GET['preview'])) {
             <label>Какое принципиальное отличие селектора ID от селектора CLASS?</label>
             <form>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="q7" <?php echo $_SESSION['q6'] == "1" ? 'checked="checked"' : ''?> value="1">
+                <input class="form-check-input" type="radio" name="q7" <?php echo $_SESSION['q7'] == "1" ? 'checked="checked"' : ''?> value="1">
                 <label class="form-check-label">
                   CLASS должен быть уникальным на странице, а одинаковый ID может быть у нескольких элементов.
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="q7" <?php echo $_SESSION['q6'] == "2" ? 'checked="checked"' : ''?> value="2">
+                <input class="form-check-input" type="radio" name="q7" <?php echo $_SESSION['q7'] == "2" ? 'checked="checked"' : ''?> value="2">
                 <label class="form-check-label">
                   Никакого отличия между ними нет.
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="q7" <?php echo $_SESSION['q6'] == "3" ? 'checked="checked"' : ''?> value="3">
+                <input class="form-check-input" type="radio" name="q7" <?php echo $_SESSION['q7'] == "3" ? 'checked="checked"' : ''?> value="3">
                 <label class="form-check-label">
                   ID должен быть уникальным на странице, а одинаковый CLASS может быть у нескольких элементов.
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="q7" <?php echo $_SESSION['q6'] == "4" ? 'checked="checked"' : ''?> value="4">
+                <input class="form-check-input" type="radio" name="q7" <?php echo $_SESSION['q7'] == "4" ? 'checked="checked"' : ''?> value="4">
                 <label class="form-check-label">
                   Разница только в наборе свойств, который может быть использован для этих селекторов. Например, для ID нельзя задавать свойство border, а для CLASS можно.
                 </label>

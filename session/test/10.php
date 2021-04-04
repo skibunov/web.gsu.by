@@ -39,25 +39,25 @@ if (isset($_GET['preview'])) {
             <label>Есть такой CSS-код: body {font-size: 14pt;} p {font-size: 2em;}. Какой размер текста будет в теге <p>:</label>
             <form>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="q7" <?php echo $_SESSION['q6'] == "1" ? 'checked="checked"' : ''?> value="1">
+                <input class="form-check-input" type="radio" name="q10" <?php echo $_SESSION['q10'] == "1" ? 'checked="checked"' : ''?> value="1">
                 <label class="form-check-label">
                   28pt
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="q7" <?php echo $_SESSION['q6'] == "2" ? 'checked="checked"' : ''?> value="2">
+                <input class="form-check-input" type="radio" name="q10" <?php echo $_SESSION['q10'] == "2" ? 'checked="checked"' : ''?> value="2">
                 <label class="form-check-label">
                   16pt
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="q7" <?php echo $_SESSION['q6'] == "3" ? 'checked="checked"' : ''?> value="3">
+                <input class="form-check-input" type="radio" name="q10" <?php echo $_SESSION['q10'] == "3" ? 'checked="checked"' : ''?> value="3">
                 <label class="form-check-label">
                   7pt
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="q7" <?php echo $_SESSION['q6'] == "4" ? 'checked="checked"' : ''?> value="4">
+                <input class="form-check-input" type="radio" name="q10" <?php echo $_SESSION['q10'] == "4" ? 'checked="checked"' : ''?> value="4">
                 <label class="form-check-label">
                   12pt
                 </label>
