@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Апр 04 2021 г., 19:31
+-- Время создания: Апр 10 2021 г., 20:08
 -- Версия сервера: 5.6.13
 -- Версия PHP: 5.4.17
 
@@ -97,6 +97,34 @@ CREATE TABLE IF NOT EXISTS `plane` (
 
 INSERT INTO `plane` (`id`, `numb`, `model`, `count`, `status`, `country`, `year`, `flights`) VALUES
 (1, 'FX51616', '241', 64, 'Прошел проверку', 'США', '2021-01-11', 'Междунородные рейсы');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(12) NOT NULL,
+  `firstname` varchar(32) NOT NULL,
+  `lastname` varchar(32) NOT NULL,
+  `age` int(11) NOT NULL,
+  `email` varchar(32) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `salt` varchar(8) NOT NULL,
+  `role` varchar(32) NOT NULL DEFAULT 'user',
+  `ban` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `login`, `firstname`, `lastname`, `age`, `email`, `password`, `salt`, `role`, `ban`) VALUES
+(1, 'blisse', 'Андрей', 'Скибунов', 19, 'skibunov.andrey@mail.ru', 'e3d0637a5b7a5ab39daee5dfd1c1714d', 'p^aBg~l/', 'admin', '2021-04-10 22:53:24'),
+(2, 'user', 'user', 'user', 20, 'user@gmail.com', '40523bf573b4355898f62b05b3ea8d4b', '9a%;hIH:', 'user', '2021-04-10 23:05:18');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -13,10 +14,12 @@
 <body>
 
   <nav class="nav nav-pills flex-column flex-sm-row p-3">
+    <a class="flex-sm-fill text-sm-center nav-link" href="main.php">Главная</a>
     <a class="flex-sm-fill text-sm-center nav-link" href="index.php">Пилот</a>
     <a class="flex-sm-fill text-sm-center nav-link" href="plane.php">Самолет</a>
     <a class="flex-sm-fill text-sm-center nav-link active" href="airport.php">Аэропорт</a>
   </nav>
+  <?php if (isset($_SESSION['auth']) and ($_SESSION['role'] == "user" or $_SESSION['role'] == "admin") ) { ?>
   <header class="jumbotron text-center" style="background-color: #f8f9fa;">
     <div class="container">
       <div class="row">
@@ -38,7 +41,9 @@
      </div>
    </div>
  </header>
+<?php } ?>
 
+<?php if (isset($_SESSION['auth']) and $_SESSION['role'] == "admin") { ?>
  <main class="main">
   <div class="container">
     <div class="row">
@@ -116,7 +121,7 @@
     </div>
   </div>
 </main> 
-
+<?php } ?>
 
 <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
