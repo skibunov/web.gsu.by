@@ -1,0 +1,90 @@
+*{
+	display: block;
+	text-align:center;
+}
+
+airport{
+	display: block;
+	padding: 15px;
+}
+
+airport:before{
+	content: "Таблица Аэропорт";
+	color: black;
+	font-weight: 800;
+}
+
+plane{
+	padding: 15px;
+	display: flex;
+	justify-content: space-between;
+}
+
+plane[name="Boeing"]{
+	background: #cecece;	
+}
+
+plane[name="Airbus"]{
+	background: #dbdca6;	
+}
+
+plane:before{
+	content: "Таблица Самолеты";
+	color: black;
+	font-weight: 800;
+}
+
+
+pilot:before{
+	content: "Таблица Пилоты";
+	color: black;
+	font-weight: 800;
+}
+
+airport name:before{
+	content: "Название аэропорта: ";
+}
+
+plane seats:before{
+	content: "Места: ";
+}
+
+plane country:before{
+	content: "Страна: ";
+}
+
+plane date:before{
+	content: "Дата: ";
+}
+
+plane flight:before{
+	content: "Тип полета: ";
+}
+
+
+pilot firstname:before{
+	content: "Фамилия: ";
+}
+pilot secondname:before{
+	content: "Имя: ";
+}
+
+pilot middlename:before{
+	content: "Отчество: ";
+}
+
+pilot birthday:before{
+	content: "Дата Рождения: ";
+}
+
+pilot adress:before{
+	content: "Адрес: ";
+}
+
+pilot phone:before{
+	content: "Телефон: ";
+}
+
+pilot[position="Первый пилот"]{
+	color: #725386;
+}
