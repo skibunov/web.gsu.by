@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<airports>
+    <airport name="Domodedovo">
+        <plane name="Boeing" model="UX-105">
+            <seats>36</seats>
+            <country>США</country>
+            <date>15.06.2009</date>
+            <flight>Междунородные рейсы</flight>
+            <pilot position="Первый пилот">
+                <firstname>Тимофеев</firstname>
+                <middlename>Владислав</middlename>
+                <secondname>Петрович</secondname>
+                <birthday>15.09.1997</birthday>
+                <adress>г. Гомель</adress>
+                <phone>+375296514575</phone>
+            </pilot>
+            <pilot position="Второй пилот">
+                <firstname>Кобзар</firstname>
+                <middlename>Никодим</middlename>
+                <secondname>Виталиевич</secondname>
+                <birthday>19.01.1997</birthday>
+                <adress>г. Минск</adress>
+                <phone>+375296410246</phone>
+            </pilot>
+        </plane>
+        <plane name="Airbus" model="UR-405">
+            <seats>105</seats>
+            <country>Британия</country>
+            <date>15.06.2010</date>
+            <flight>Междунородные рейсы</flight>
+            <pilot position="Первый пилот">
+                <firstname>Моисеев</firstname>
+                <middlename>Карим</middlename>
+                <secondname>Анатолиевич</secondname>
+                <birthday>15.09.1997</birthday>
+                <adress>г. Гомель</adress>
+                <phone>+375296514575</phone>
+            </pilot>
+            <pilot position="Второй пилот">
+                <firstname>Недбайло</firstname>
+                <middlename>Цицерон</middlename>
+                <secondname>Леонидович</secondname>
+                <birthday>19.01.1997</birthday>
+                <adress>г. Минск</adress>
+                <phone>+375296410246</phone>
+            </pilot>
+        </plane>
+    </airport>
+</airports>

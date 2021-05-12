@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var objDom;
+		objDom = new ActiveXObject("MSXML.DOMDocument");
+		objDom.async=true;
+		objDom.load("aiports.xml");
+
+		//alert("5.Вывода xml-файла");
+		//alert(objDom.xml)
+
+		alert("До удаления узла <pilot>");
+		var objNodeList = objDom.getElementsByTagName("plane");
+		alert(objNodeList.item(0).xml);
+		var objOldChild=objNodeList.item(0).removeChild(objNodeList.item(0).lastChild);
+		alert("После удаления узла <pilot>");
+		alert(objNodeList.item(0).xml);
+
+		alert("Перед заменой узла <pilot>");
+		alert(objNodeList.item(1).xml);
+		objNodeList.item(1).replaceChild(objOldChild,objNodeList.item(1).lastChild);
+		alert("После замены узла <pilot>");
+		alert(objNodeList.item(1).xml);
+
+
+		alert("Перед вставкой еще узла <pilot>");
+		alert(objNodeList.item(1).xml);
+		objNodeList.item(1).appendChild(objNodeList.item(0).firstChild);
+		alert("После вставки еще одного узла <pilot>");
+		alert(objNodeList.item(1).xml);
+
+		alert("Перед изменением значения узла <seats> и узла <country>");
+		alert(objNodeList.item(0).xml);
+		var charNodeList=objNodeList.item(0).firstChild;
+		charNodeList.nodeValue = "1";
+		//charNodeList.item(0).firstChild.nodeValue="1";
+		//charNodeList.item(1).firstChild.nodeValue=БУЛ;
+
+		alert("После изменения значения узла <seats> и узла <country>");
+		alert(objNodeList.item(0).xml);
+
+
+
+	</script>
+</body>
+</html>
